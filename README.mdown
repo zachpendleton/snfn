@@ -1,6 +1,6 @@
 = snfn
 
-Description goes here.
+A Sinatra template generator.
 
 == Contributing to snfn
  
