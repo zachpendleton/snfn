@@ -9,7 +9,7 @@ class SnfnGenerator < Thor
   include Thor::Actions
 
   desc "new NAME", "Creates new Snfn application"
-  method_option :database, :aliases => "-d", :default => "postgres", :desc => "The type of database to use. Values are \"sqlite\", \"postgres\", \"mysql\", and \"mongo\". Default is \"postgres\"."
+  method_option :database, :aliases => "-d", :default => "sqlite", :desc => "The type of database to use. Values are \"sqlite\", \"postgres\", \"mysql\", and \"mongo\". Default is \"postgres\"."
   method_option :no_heroku, :type => :boolean, :desc => "Include Heroku configuration options."
   method_option :no_database, :type => :boolean, :desc => "Do not use any database."
   method_option :redis, :type => :boolean, :desc => "Include Redis configuration options."
