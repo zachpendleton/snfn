@@ -43,10 +43,10 @@ class SnfnGenerator < Thor
     copy_template "app.rb", "#{@name}.rb"
     copy_template "config.ru"
     copy_template "Gemfile"
-    copy_static "Procfile"
+    copy_static "Procfile" unless @no_heroku
     copy_static "Rakefile"
     copy_static "README.mdown"
-    copy_static "config/unicorn.rb"
+    copy_template "config/unicorn.rb"
 
     copy_static "config/redis.yml" if @redis
     copy_template "config/db.yml" unless @no_database
