@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 # App Stack
-<% if @heroku -%>
+<% if !@no_heroku -%>
 gem "foreman"
 gem "heroku"
 <% end -%>
@@ -14,7 +14,7 @@ gem "unicorn"
 gem "sequel"
 <% end -%>
 <% if @database == "sqlite" -%>
-<% if @heroku -%>
+<% if !@no_heroku -%>
 group :development, :test do
   gem "sqlite3"
 end
@@ -24,7 +24,7 @@ gem "sqlite3"
 <% elsif @database == "postgres" -%>
 gem "pg"
 <% elsif @database == "mysql" -%>
-<% if @heroku -%>
+<% if !@no_heroku -%>
 group :development, :test do
   gem "mysql2"
 end
@@ -35,7 +35,7 @@ gem "mysql2"
 gem "bson_ext"
 gem "mongo_mapper"
 <% end -%>
-<% if @heroku && @database != "postgres" && @database != "mongo" -%>
+<% if !@no_heroku && @database != "postgres" && @database != "mongo" -%>
 group :production do
   gem "pg"
 end

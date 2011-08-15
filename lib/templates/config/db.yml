@@ -13,14 +13,23 @@ test: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_test"
 production: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_production"
 <% elsif @database == "mongo" %>
 development:
-  name: <%= @name %>_development
   host: localhost
+  port: 27017
+  database: <%= @name %>_development
+  username:
+  password:
 
 test:
-  name: <%= @name %>_test
   host: localhost
+  port: 27017
+  database: <%= @name %>_test
+  username:
+  password:
 
 production:
-  name: <%= @name %>_production
   host: localhost
+  port: 27017
+  database: <%= @name %>_production
+  username:
+  password:
 <% end %>
