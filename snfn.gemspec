@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{snfn}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Zach Pendleton}]
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
     "lib/templates/config/redis.yml",
     "lib/templates/config/unicorn.rb",
     "lib/templates/public/css/main.css",
+    "lib/templates/public/img/.gitkeep",
     "lib/templates/public/js/app.js",
     "lib/templates/public/js/lib/modernizr-2.0.6.js",
     "lib/templates/views/layout.erb",
