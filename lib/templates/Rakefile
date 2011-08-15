@@ -15,6 +15,8 @@ end
 task :environment, [:env] do |cmd, args|
   Bundler.require
   ENV['RACK_ENV'] = args[:env] || "development"
-  Find.find("lib") { |f| require f unless f.match(/\/\..+$/) || File.directory?(f) }
+  %w{ ./config/initializers ./lib }.each do
+    Find.find(lib) { |f| require f unless f.match(/\/\..+$/) || File.directory?(f) }
+  end
 end
 
