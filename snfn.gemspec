@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{snfn}
-  s.version = "0.1.2"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Zach Pendleton}]
@@ -46,6 +46,7 @@ Gem::Specification.new do |s|
     "lib/templates/views/welcome.erb",
     "snfn.gemspec",
     "test/helper.rb",
+    "test/test_extension_string.rb",
     "test/test_snfn.rb",
     "vendor/cache/git-1.2.5.gem",
     "vendor/cache/jeweler-1.6.4.gem",
