@@ -1,0 +1,44 @@
+# Sinatra Template
+
+Author: Zach Pendleton, 2011.
+
+A starting template for Sinatra projects. At checkout, this template
+is configured to work with Heroku and has default configuration
+options for PostgreSQL, MongoDB, and Redis.
+
+## Architecture
+
+The template autoloads files in config/initializers and
+/lib, and uses the following gems by default:
+
+### Storage
+*  sequel
+*  sqlite3
+*  pg
+*  mongo\_mapper
+*  redis
+
+### Application
+*  sinatra
+*  foreman
+*  unicorn
+
+## Set up on Heroku
+
+The first step is to set up a new Heroku app. Install the heroku
+gem and then run:
+
+    heroku create --stack cedar
+
+The app can then be deployed by running:
+
+    git push heroku master
+
+### Heroku Add-Ons
+
+To use PostgreSQL, MongoDB, or Redis, you'll need to add the
+proper Heroku add-ons. The commands to do this are, respectively:
+
+    heroku addons:add shared_database # PostgreSQL
+    heroku addons:add mongohq:free # MongoDB
+    heroku addons:add redistogo:nano # Redis

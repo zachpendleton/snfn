@@ -1,0 +1,26 @@
+# Sequel Database Configuration
+<% if @database == "sqlite" %>
+development: "sqlite://db/development.sqlite3"
+test: "sqlite://db/test.sqlite3"
+production: "sqlite://db/production.sqlite3"
+<% elsif @database == "postgres" %>
+development: "postgres://<%= `whoami`.chop %>@localhost/<%= @name %>_development"
+test: "postgres://<%= `whoami`.chop %>@localhost/<%= @name %>_test"
+production: "postgres://<%= `whoami`.chop %>@localhost/<%= @name %>_production"
+<% elsif @database == "mysql" %>
+development: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_development"
+test: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_test"
+production: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_production"
+<% elsif @database == "mongo" %>
+development:
+  name: <%= @name %>_development
+  host: localhost
+
+test:
+  name: <%= @name %>_test
+  host: localhost
+
+production:
+  name: <%= @name %>_production
+  host: localhost
+<% end %>
