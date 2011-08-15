@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
+%w{rubygems extensions/string thor}.each do |lib|
+  require lib
+end
+
+class SnfnGenerator < Thor
+  include Thor::Actions
+
+  desc "new NAME", "Creates new Snfn application"
+  method_option :database, :aliases => "-d", :default => "postgres", :desc => "The type of database to use. Values are \"sqlite\", \"postgres\", \"mysql\", and \"mongo\". Default is \"postgres\"."
+  method_option :no_heroku, :type => :boolean, :desc => "Include Heroku configuration options."
+  method_option :no_database, :type => :boolean, :desc => "Do not use any database."
+  method_option :redis, :type => :boolean, :desc => "Include Redis configuration options."
+  def new(name)
+    @name = @app_path = name.file_name
+    @database = options[:database]
+    @no_database = options[:no_database]
+    @redis = options[:redis]
+    @no_heroku = options[:no_heroku]
+
+    create_directories
+    add_templates
+  end
+
+  def self.source_root
+    File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "templates"))
+  end
+
+  protected
+  def create_directories
+    %w{config/initializers db/migrate lib log tmp}.each do |dir|
+      add_app_directory dir
+    end
+
+    %w{public/css public/js public/img views}.each do |dir|
+      directory dir, File.join(@app_path, dir)
+    end
+  end
+
+  def add_templates
+    copy_template "app.rb", "#{@name}.rb"
+    copy_template "config.ru"
+    copy_template "Gemfile"
+    copy_static "Procfile"
+    copy_static "Rakefile"
+    copy_static "README.mdown"
+    copy_static "config/unicorn.rb"
+
+    copy_static "config/redis.yml" if @redis
+    copy_template "config/db.yml" unless @no_database
+    copy_template "config/initializers/database.rb"
+  end
+
+  def add_app_directory(name)
+    empty_directory(File.join(@app_path, name))
+  end
+
+  def copy_template(name, new_name = nil)
+    new_name ||= name
+    template name, File.join(@app_path, new_name)
+  end
+
+  def copy_static(name)
+    copy_file name, File.join(@app_path, name)
+  end
+end
+
+SnfnGenerator.start
+
