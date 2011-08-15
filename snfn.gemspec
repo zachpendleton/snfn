@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
     "lib/templates/public/js/lib/modernizr-2.0.6.js",
     "lib/templates/views/layout.erb",
     "lib/templates/views/welcome.erb",
+    "snfn.gemspec",
     "test/helper.rb",
     "test/test_snfn.rb",
     "vendor/cache/git-1.2.5.gem",
