@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "snfn"
   gem.homepage = "http://github.com/zachpendleton/snfn"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A Heroku-friendy Sinatra app generator}
+  gem.description = %Q{An app generator for Sinatra apps with an eye towards easy Heroku setup and deployment.}
   gem.email = "zachpendleton@gmail.com"
   gem.authors = ["Zach Pendleton"]
   # dependencies defined in Gemfile
