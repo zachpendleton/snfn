@@ -2,9 +2,9 @@ module Snfn
   module Extensions
     module String
       def camel_case
-        return self if !match(/_/)
-        altered_self = self.capitalize
-        altered_self.scan(/_[a-zA-Z]/).each do |match|
+        return self.gsub(/^./) { |l| l.capitalize } if !match(/[_-]/)
+        altered_self = self.downcase.capitalize
+        altered_self.scan(/[_-][a-zA-Z]/).each do |match|
           altered_self.gsub!(match, match[1].upcase)
         end
 
@@ -16,13 +16,14 @@ module Snfn
       end
 
       def file_name
-        return self if !match(/[A-Z]/)
+        return self.gsub(/-/, "_") if !match(/[A-Z]/)
         altered_self = self.strip
+
         altered_self.scan(/[A-Z]/).each do |match|
           altered_self.gsub!(match, "_#{match.downcase}")
         end
 
-        altered_self.sub(/^_/, "")
+        altered_self.sub(/^_/, "").gsub(/_{2,}+/, "_").downcase
       end
 
       def file_name!
