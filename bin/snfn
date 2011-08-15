@@ -51,6 +51,8 @@ class SnfnGenerator < Thor
     copy_static "config/redis.yml" if @redis
     copy_template "config/db.yml" unless @no_database
     copy_template "config/initializers/database.rb"
+
+    create_file File.join(@app_path, "lib", ".gitkeep")
   end
 
   def add_app_directory(name)
