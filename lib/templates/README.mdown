@@ -1,44 +1,60 @@
-# Sinatra Template
+# Snfn - A Sinatra application generator
 
-Author: Zach Pendleton, 2011.
+Snfn is an opinionated generator for Sinatra projects. It
+can be configured using the following options:
 
-A starting template for Sinatra projects. At checkout, this template
-is configured to work with Heroku and has default configuration
-options for PostgreSQL, MongoDB, and Redis.
+*  -d : Database. Options are "postgres," "mysql," "sqlite",
+   and "mongo." Default is "sqlite."
+*  --redis : Include Redis configuration options.
+* --no-database : Don't include any database config options.
+* --no-heroku : Don't include Heroku config options.
+
+## Example
+
+Standard Heroku app, using sqlite for local development and
+PostgreSQL for production.
+
+    snfn new my_app
+
+App without Heroku options and mysql config.
+
+    snfn new my_app -d mysql --no-heroku
 
 ## Architecture
 
 The template autoloads files in config/initializers and
-/lib, and uses the following gems by default:
+/lib. Database configuration options are stored in `config/db.yml`
+and are loaded via `config/initializers/database.rb`.
 
-### Storage
-*  sequel
-*  sqlite3
-*  pg
-*  mongo\_mapper
-*  redis
+Right now Snfn only supports Unicorn as a server, with the config
+stored at config/unicorn.rb.
 
-### Application
-*  sinatra
-*  foreman
-*  unicorn
+## DB Setup
+
+Sequel is used as an ORM for relational databases,
+and migrations are stored in db/migrate. Migrations can be
+run using the rake command `rake migrate`.
+
+MongoMapper is used for Mongo apps, with the config options
+stored in the same files as relational databases (`config/db.yml`
+and `config/initializers/database.rb`).
 
 ## Set up on Heroku
 
-The first step is to set up a new Heroku app. Install the heroku
-gem and then run:
+By default, Snfn creates an app with the proper options for deployment
+on Heroku. To get Snfn up and running on Heroku:
 
-    heroku create --stack cedar
-
-The app can then be deployed by running:
-
-    git push heroku master
+1.  Install your gems with `bundle install`
+2.  Create a new git repository: `git init .`
+3.  Make your first commit: `git add .; git commit -m "initial commit"`
+4.  Create a new heroku app: `bundle exec heroku create --stack cedar`
+5.  Deploy the app: `git push heroku master`
 
 ### Heroku Add-Ons
 
-To use PostgreSQL, MongoDB, or Redis, you'll need to add the
-proper Heroku add-ons. The commands to do this are, respectively:
+To use PostgreSQL, MongoDB, or Redis on Heroku, you'll need to add
+the proper Heroku add-ons. The commands to do this are, respectively:
 
     heroku addons:add shared_database # PostgreSQL
-    heroku addons:add mongohq:free # MongoDB
+    heroku addons:add mongolab:starter: # MongoDB
     heroku addons:add redistogo:nano # Redis
