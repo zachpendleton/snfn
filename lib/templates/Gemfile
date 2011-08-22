@@ -40,9 +40,9 @@ group :production do
   gem "pg"
 end
 <% end -%>
+<% end -%>
 <% if @redis -%>
 # Redis
 gem "redis"
-<% end -%>
 <% end -%>
 
