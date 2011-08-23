@@ -1,7 +1,7 @@
 worker_processes 3
 timeout 30
 
-<% if @noheroku -%>
+<% if @no_heroku -%>
 docroot = File.join(File.expand_path(File.dirname(__FILE__)), "..")
 
 listen "#{docroot}/tmp/sockets/unicorn.sock"
