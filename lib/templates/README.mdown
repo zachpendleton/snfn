@@ -18,11 +18,11 @@ can be configured using the following options:
 Standard Heroku app, using sqlite for local development and
 PostgreSQL for production.
 
-    snfn new my_app
+    snfn my_app
 
 App without Heroku options and mysql config.
 
-    snfn new my_app -d mysql --no-heroku
+    snfn my_app -d mysql --no-heroku
 
 ## Architecture
 
