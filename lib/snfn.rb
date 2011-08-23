@@ -41,7 +41,7 @@ module Snfn
     end
 
     def create_app
-      template "app.rb", File.join(@app_path, "app.rb")
+      template "app.rb", File.join(@app_path, "#{@name}.rb")
     end
 
     def create_config
@@ -68,16 +68,20 @@ module Snfn
       template "config/unicorn.rb", File.join(@app_path, "config/unicorn.rb")
     end
 
-    def create_redis_config
-      copy_file "config/redis.yml", File.join(@app_path, "config/redis.yml") if @redis
-    end
-
     def create_db_config
       template "config/db.yml", File.join(@app_path, "config/db.yml") unless @no_database
     end
 
     def create_database_initializer
       template "config/initializers/database.rb", File.join(@app_path, "config/initializers/database.rb")
+    end
+
+    def create_redis_config
+      copy_file "config/redis.yml", File.join(@app_path, "config/redis.yml") if @redis
+    end
+
+    def create_redis_initializer
+      template "config/initializers/redis.rb", File.join(@app_path, "config/initializers/redis.rb") if @redis
     end
 
     def create_lib_gitkeep
