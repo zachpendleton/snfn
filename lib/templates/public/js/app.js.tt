@@ -1,0 +1,14 @@
+/**
+ * Application-specific JavaScript goes here.
+ *
+ */
+
+(function(){
+  var <%= @name.camel_case %> = {
+    init : function(){
+      return this;
+    }
+  }
+
+  return <%= @name.camel_case %>.init();
+})();

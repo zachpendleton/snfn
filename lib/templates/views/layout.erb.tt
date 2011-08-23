@@ -7,28 +7,28 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-  <title>Template</title>
+  <title><%= @name.camel_case %></title>
 
-  <meta name="author" content="Zach Pendleton" />
-  <meta name="description" content="Template Description" />
+  <meta name="author" content="Me" />
+  <meta name="description" content="Site Description" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <script src="/js/lib/modernizr-2.0.6.js"></script>
-  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/scaffold.css" />
 </head>
 <body>
   <div class="wrapper">
     <header class="branding">
-      <h1>My Application Title</h1>
+      <h1><%= @name.camel_case %></h1>
     </header>
 
     <div class="main">
-      <%= yield %>
+      <%%= yield %>
     </div>
 
     <footer class="branding">
-      <small>&copy; <%= Time.now.year %>, Zach Pendleton.</small>
+      <small>&copy; <%%= Time.now.year %>, Me.</small>
     </footer>
   </div>
 
