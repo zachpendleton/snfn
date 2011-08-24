@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{snfn}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Zach Pendleton}]
-  s.date = %q{2011-08-15}
+  s.date = %q{2011-08-24}
   s.description = %q{An app generator for Sinatra apps with an eye towards easy Heroku setup and deployment.}
   s.email = %q{zachpendleton@gmail.com}
   s.executables = [%q{snfn}]
@@ -36,18 +36,20 @@ Gem::Specification.new do |s|
     "lib/templates/config.ru",
     "lib/templates/config/db.yml",
     "lib/templates/config/initializers/database.rb",
+    "lib/templates/config/initializers/redis.rb",
     "lib/templates/config/redis.yml",
     "lib/templates/config/unicorn.rb",
-    "lib/templates/public/css/main.css",
+    "lib/templates/public/css/scaffold.css",
     "lib/templates/public/img/.gitkeep",
-    "lib/templates/public/js/app.js",
+    "lib/templates/public/js/app.js.tt",
     "lib/templates/public/js/lib/modernizr-2.0.6.js",
-    "lib/templates/views/layout.erb",
+    "lib/templates/views/layout.erb.tt",
     "lib/templates/views/welcome.erb",
     "snfn.gemspec",
     "test/helper.rb",
     "test/test_extension_string.rb",
     "test/test_snfn.rb",
+    "vendor/cache/fakefs-0.3.2.gem",
     "vendor/cache/git-1.2.5.gem",
     "vendor/cache/jeweler-1.6.4.gem",
     "vendor/cache/rake-0.9.2.gem",
@@ -65,15 +67,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<thor>, ["~> 0.14.6"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<fakefs>, ["~> 0.3.2"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
     else
       s.add_dependency(%q<thor>, ["~> 0.14.6"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<fakefs>, ["~> 0.3.2"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     end
   else
     s.add_dependency(%q<thor>, ["~> 0.14.6"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<fakefs>, ["~> 0.3.2"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
   end
 end
